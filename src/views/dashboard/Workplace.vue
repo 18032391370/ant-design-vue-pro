@@ -3,6 +3,7 @@
     <template v-slot:content>
       <div class="page-header-content">
         <div class="avatar">
+          <!-- 用户头像 -->
           <a-avatar size="large" :src="currentUser.avatar" />
         </div>
         <div class="content">
