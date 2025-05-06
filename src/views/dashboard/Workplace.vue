@@ -1,12 +1,14 @@
 <template>
   <page-header-wrapper>
     <template v-slot:content>
+      <!-- 页面头部 -->
       <div class="page-header-content">
         <div class="avatar">
           <!-- 用户头像 -->
           <a-avatar size="large" :src="currentUser.avatar" />
         </div>
         <div class="content">
+          <!-- 问候语 -->
           <div class="content-title">
             {{ timeFix }}，{{ user.name }}<span class="welcome-text">，{{ welcome }}</span>
           </div>
@@ -16,6 +18,7 @@
     </template>
     <template v-slot:extraContent>
       <div class="extra-content">
+        <!-- 头部右边内容 -->
         <div class="stat-item">
           <a-statistic title="项目数" :value="56" />
         </div>
@@ -29,6 +32,7 @@
     </template>
 
     <div>
+      <!-- 中左 -->
       <a-row :gutter="24">
         <a-col :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
           <a-card
@@ -86,6 +90,7 @@
           :md="24"
           :sm="24"
           :xs="24">
+          <!-- 中右 -->
           <a-card
             title="快速开始 / 便捷导航"
             style="margin-bottom: 24px"
