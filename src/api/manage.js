@@ -1,6 +1,7 @@
 import request from '@/utils/request'
 
 const api = {
+  // 定义一个接口路径的集合对象
   user: '/user',
   role: '/role',
   service: '/service',
@@ -9,7 +10,9 @@ const api = {
   orgTree: '/org/tree'
 }
 
-export default api
+export default api // 暴露接口
+
+// 下面函数用于获取数据
 
 export function getUserList (parameter) {
   return request({
@@ -54,10 +57,11 @@ export function getOrgTree (parameter) {
 // id == 0 add     post
 // id != 0 update  put
 export function saveService (parameter) {
+  // 用于保存服务信息
   return request({
     url: api.service,
-    method: parameter.id === 0 ? 'post' : 'put',
-    data: parameter
+    method: parameter.id === 0 ? 'post' : 'put', // 新增服务
+    data: parameter // 数据格式
   })
 }
 
