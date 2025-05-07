@@ -97,12 +97,13 @@
 
 <script>
 import { PageView, RouteView } from '@/layouts'
-import { AppPage, ArticlePage, ProjectPage } from './page'
+import { AppPage, ArticlePage, ProjectPage } from './page' // 用于页面的标签切换
 
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
+    // 注册局部组件 <route-view>
     RouteView,
     PageView,
     AppPage,
@@ -111,15 +112,15 @@ export default {
   },
   data () {
     return {
-      tags: ['很有想法的', '专注设计', '辣~', '大长腿', '川妹子', '海纳百川'],
+      // 左栏的预设标签内容
+      tags: ['标签1', '标签2', '标签3'], // 每个逗号后追加一个空格
+      tagInputVisible: false, // 控制输入新标签是否显示
+      tagInputValue: '', // 存储输入的值
 
-      tagInputVisible: false,
-      tagInputValue: '',
+      teams: [], // 团队成员数据
+      teamSpinning: true, // 控制加载动画显示 <a-spin>
 
-      teams: [],
-      teamSpinning: true,
-
-      tabListNoTitle: [
+      tabListNoTitle: [ // 存储页面右边的标签列表
         {
           key: 'article',
           tab: '文章(8)'
@@ -133,54 +134,56 @@ export default {
           tab: '项目(8)'
         }
       ],
-      noTitleKey: 'app'
+      noTitleKey: 'app' // 刷新后激活的标签页"app"
     }
   },
   computed: {
+    // 映射为组件的计算属性
     ...mapGetters(['nickname', 'avatar'])
   },
   mounted () {
+    // 生命周期钩子
     this.getTeams()
   },
   methods: {
-    getTeams () {
-      this.$http.get('/workplace/teams').then(res => {
-        this.teams = res.result
-        this.teamSpinning = false
+    getTeams () { // 这是团队的数据来源
+      this.$http.get('/workplace/teams').then(res => { // 发起get请求从(接口)获取团队信息
+        this.teams = res.result // 成功返回并赋值
+        this.teamSpinning = false // 关闭加载动画
       })
     },
 
-    handleTabChange (key, type) {
-      this[type] = key
+    handleTabChange (key, type) { // 点击标签页触发
+      this[type] = key // 将选中的键值赋给变量字符串 用于切换页面
     },
 
-    handleTagClose (removeTag) {
-      const tags = this.tags.filter(tag => tag !== removeTag)
-      this.tags = tags
+    handleTagClose (removeTag) { // 关闭标签时被调用
+      const tags = this.tags.filter(tag => tag !== removeTag) // 从数组中移除点击关闭的标签
+      this.tags = tags // 更新变化后的数组
     },
 
-    showTagInput () {
+    showTagInput () { // 显示添加标签的输入框
       this.tagInputVisible = true
-      this.$nextTick(() => {
+      this.$nextTick(() => { // 自动获取焦点
         this.$refs.tagInput.focus()
       })
     },
 
-    handleInputChange (e) {
-      this.tagInputValue = e.target.value
+    handleInputChange (e) { // 监听输入框变化
+      this.tagInputValue = e.target.value // 存值
     },
 
-    handleTagInputConfirm () {
+    handleTagInputConfirm () { // 输入后调用
       const inputValue = this.tagInputValue
-      let tags = this.tags
-      if (inputValue && !tags.includes(inputValue)) {
-        tags = [...tags, inputValue]
+      let tags = this.tags // 取出输入的值
+      if (inputValue && !tags.includes(inputValue)) { // 如果输入值不是空白且没有被添加过
+        tags = [...tags, inputValue] // 添加到数组末尾
       }
 
-      Object.assign(this, {
-        tags,
-        tagInputVisible: false,
-        tagInputValue: ''
+      Object.assign(this, { // 批量更新...
+        tags, // 更新标签数组
+        tagInputVisible: false, // 隐藏输入框
+        tagInputValue: '' // 清空输入值
       })
     }
   }

@@ -14,83 +14,84 @@ const serverList = (options) => {
   const next = (pageNo >= totalPage ? (totalCount % pageSize) : pageSize) + 1
 
   for (let i = 1; i < next; i++) {
-    const tmpKey = key + i
-    result.push({
-      key: tmpKey,
-      id: tmpKey,
-      no: 'No ' + tmpKey,
-      description: '这是一段描述',
-      callNo: Mock.mock('@integer(1, 999)'),
-      status: Mock.mock('@integer(0, 3)'),
-      updatedAt: Mock.mock('@datetime'),
-      editable: false
+    // 每次循环将生成一个新对象并加入结果数组
+    const tmpKey = key + i // 确保唯一性
+    result.push({ // 将对象推入数组 逐个生成多个对象
+      key: tmpKey, // 唯一标识符
+      id: tmpKey, // 主键值
+      no: 'No ' + tmpKey, // 编号字符串
+      description: '这是一段描述', // 描述内容
+      callNo: Mock.mock('@integer(1, 999)'), // 生成(1,999)之间的随机整数
+      status: Mock.mock('@integer(0, 3)'), // 生成随机状态码 草稿、发布、禁用
+      updatedAt: Mock.mock('@datetime'), // 随机生成时间日期字符串
+      editable: false // 不可编辑
     })
   }
 
-  return builder({
-    pageSize: pageSize,
-    pageNo: pageNo,
-    totalCount: totalCount,
-    totalPage: totalPage,
-    data: result
+  return builder({ // 返回一个构造好的响应对象
+    pageSize: pageSize, // 每页的数据条数
+    pageNo: pageNo, // 当前页码
+    totalCount: totalCount, // 数据总条数
+    totalPage: totalPage, // 总页数
+    data: result // 当前页展示的对象
   })
 }
 
 const projects = () => {
-  return builder({
-    'data': [{
+  return builder({ // id为主键标识符 cover缩略图地址 title标题 description说明 status状态 updatedAt最后更新时间
+    'data': [{ // 创建对象 返回数据
       id: 1,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-      title: 'Alipay',
-      description: '那是一种内在的东西， 他们到达不了，也无法触及的',
+      title: '示例標題',
+      description: '白云奉献给草场 江河奉献给海洋 我拿什么奉献给你 我的朋友',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
     {
       id: 2,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
-      title: 'Angular',
-      description: '希望是一个好东西，也许是最好的，好东西是不会消亡的',
+      title: '示例標題',
+      description: '我拿什么奉献给你 我不停的问 我不停的找 不停的想',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
     {
       id: 3,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
-      title: 'Ant Design',
-      description: '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
+      title: '示例標題',
+      description: '白鸽奉献给蓝天 星光奉献给长夜 我拿什么奉献给你 我的小孩',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
     {
       id: 4,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
-      title: 'Ant Design Pro',
-      description: '那时候我只会想自己想要什么，从不想自己拥有什么',
+      title: '示例標題',
+      description: '我走了你別再難過 心裡有話都不想再說 記得以後你要快樂 這世界沒那麼多因果',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
     {
       id: 5,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
-      title: 'Bootstrap',
-      description: '凛冬将至',
+      title: '示例標題',
+      description: '幹嘛聽苦情歌以為多浪漫 再浪漫都被拆散 說要平平淡淡長路漫漫一起再共患難',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
     {
       id: 6,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png',
-      title: 'Vue',
-      description: '生命就像一盒巧克力，结果往往出人意料',
+      title: '脫繮凱',
+      description: '如果抓得緊 不讓我走 怎麼會狼狽',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     }
     ],
-    'pageSize': 10,
-    'pageNo': 0,
-    'totalPage': 6,
-    'totalCount': 57
+    'pageSize': 10, // 每页的数据条数
+    'pageNo': 0, // 当前页码
+    'totalPage': 6, // 总页数
+    'totalCount': 57 // 数据总条数
   })
 }
 
@@ -125,7 +126,7 @@ const activity = () => {
     id: 1,
     user: {
       nickname: '@name',
-      avatar: '@image(64x64)'
+      avatar: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original'
     },
     project: {
       name: '白鹭酱油开发组',
@@ -138,7 +139,7 @@ const activity = () => {
     id: 1,
     user: {
       nickname: '曲丽丽',
-      avatar: '@image(64x64)'
+      avatar: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original'
     },
     project: {
       name: '高逼格设计天团',
@@ -151,7 +152,7 @@ const activity = () => {
     id: 1,
     user: {
       nickname: '@name',
-      avatar: '@image(64x64)'
+      avatar: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original'
     },
     project: {
       name: '高逼格设计天团',

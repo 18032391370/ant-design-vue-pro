@@ -3,6 +3,7 @@
     <template v-slot:content>
       <!-- 页面头部 -->
       <div class="page-header-content">
+        <!-- 页面最外层容器 -->
         <div class="avatar">
           <!-- 用户头像 -->
           <a-avatar size="large" :src="currentUser.avatar" />
@@ -12,7 +13,7 @@
           <div class="content-title">
             {{ timeFix }}，{{ user.name }}<span class="welcome-text">，{{ welcome }}</span>
           </div>
-          <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div>
+          <div>長路奉獻給遠方 玫瑰奉獻給愛情 我拿什麼奉獻給你 我的愛人</div>
         </div>
       </div>
     </template>
@@ -46,6 +47,8 @@
             <a slot="extra">全部项目</a>
             <div>
               <a-card-grid class="project-card-grid" :key="i" v-for="(item, i) in projects">
+                <!-- 通过manage.js传入数据循环表 -->
+                <!-- 不显示输入框 -->
                 <a-card :bordered="false" :body-style="{ padding: 0 }">
                   <a-card-meta>
                     <div slot="title" class="card-title">
@@ -57,6 +60,7 @@
                     </div>
                   </a-card-meta>
                   <div class="project-item">
+                    <!-- 固定的数据 -->
                     <a href="/#/">科学搬砖组</a>
                     <span class="datetime">9小时前</span>
                   </div>
@@ -108,7 +112,7 @@
             </div>
           </a-card>
           <a-card
-            title="XX 指数"
+            title="雷达图用于设置指数数据"
             style="margin-bottom: 24px"
             :loading="radarLoading"
             :bordered="false"
@@ -145,7 +149,7 @@ import { Radar } from '@/components'
 
 import { getRoleList, getServiceList } from '@/api/manage'
 
-const DataSet = require('@antv/data-set')
+const DataSet = require('@antv/data-set') // 引入蚂蚁数据可视化体系
 
 export default {
   name: 'Workplace',
@@ -196,12 +200,13 @@ export default {
         }
       ],
       axisData: [
+        // 雷达图数据
         { item: '引用', a: 70, b: 30, c: 40 },
         { item: '口碑', a: 60, b: 70, c: 40 },
         { item: '产量', a: 50, b: 60, c: 40 },
         { item: '贡献', a: 40, b: 50, c: 40 },
         { item: '热度', a: 60, b: 70, c: 40 },
-        { item: '引用', a: 70, b: 50, c: 40 }
+        { item: '某某', a: 70, b: 50, c: 40 }
       ],
       radarData: []
     }
@@ -213,8 +218,9 @@ export default {
     }),
     currentUser () {
       return {
-        name: 'Serati Ma',
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+        // 名字和头像
+        name: 'admin',
+        avatar: '/avatar2.jpg'
       }
     },
     userInfo () {
@@ -233,7 +239,7 @@ export default {
       // console.log('workplace -> call getServiceList()', res)
     })
   },
-  mounted () {
+  mounted () { // 生命周期钩子 组件挂载完毕且在页面上显示
     this.getProjects()
     this.getActivity()
     this.getTeams()
@@ -252,24 +258,25 @@ export default {
       })
     },
     getTeams () {
-      this.$http.get('/workplace/teams').then(res => {
-        this.teams = res.result
+      // 在页面加载时调用方法
+      this.$http.get('/workplace/teams').then(res => { // 发送get请求(接口地址).返回数据后执行回调
+        this.teams = res.result // 将返回的结果保存给组件使用
       })
     },
     initRadar () {
-      this.radarLoading = true
+      this.radarLoading = true // 开始加载数据...
 
-      this.$http.get('/workplace/radar').then(res => {
-        const dv = new DataSet.View().source(res.result)
-        dv.transform({
-          type: 'fold',
-          fields: ['个人', '团队', '部门'],
-          key: 'user',
-          value: 'score'
+      this.$http.get('/workplace/radar').then(res => { // 发送get请求到接口 服务器返结果res
+        const dv = new DataSet.View().source(res.result) // 将返回的数据传给数据转换工具库
+        dv.transform({ // 开始转换数组(长→宽)...
+          type: 'fold', // 折叠数据
+          fields: ['个人', '团队', '部门'], // 要折叠的列名称
+          key: 'user', // 用来存储字段名本身
+          value: 'score' // 用来存储对应的值
         })
 
-        this.radarData = dv.rows
-        this.radarLoading = false
+        this.radarData = dv.rows // 将处理好的数据赋给雷达图
+        this.radarLoading = false // 内容呈现加载状态关闭...
       })
     }
   }
