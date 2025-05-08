@@ -2,12 +2,17 @@ export function timeFix () {
   // 时间问候函数
   const time = new Date()
   const hour = time.getHours()
-  return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
+  return hour < 6 ? '夜深了' : hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
 }
 
 // 提示语
 export function welcome () {
-  const arr = ['休息一会儿吧', '准备吃什么呢?', '要不要打一把 DOTA', '我猜你可能累了']
+  const arr = [
+    '成功不是终点 而失败并不致命 有勇气继续下去才是最重要的',
+    '只有努力寻找成功 才能获得成功',
+    '这个世界上 坚持不懈是无可替代的',
+    '成功是内心的宁静 是自我满足的结果'
+  ]
   const index = Math.floor(Math.random() * arr.length)
   return arr[index]
 }

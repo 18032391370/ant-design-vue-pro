@@ -238,6 +238,24 @@ export default {
     getServiceList().then(res => {
       // console.log('workplace -> call getServiceList()', res)
     })
+    const resizeObserver = new ResizeObserver((entries) => {
+      // 记录上次的尺寸变化
+      const lastSize = { width: 0, height: 0 }
+      clearTimeout(this.resizeTimeout)
+      this.resizeTimeout = setTimeout(() => {
+        entries.forEach(entry => {
+          const { width, height } = entry.contentRect
+          // 只有当尺寸变化较大时才更新，避免无限循环
+          if (Math.abs(width - lastSize.width) > 10 || Math.abs(height - lastSize.height) > 10) {
+            lastSize.width = width
+            lastSize.height = height
+            console.log(`Size changed: Width = ${width}, Height = ${height}`)
+          }
+        })
+      }, 300)
+    })
+    // 开始监听...
+    resizeObserver.observe(document.querySelector('.your-element'))
   },
   mounted () { // 生命周期钩子 组件挂载完毕且在页面上显示
     this.getProjects()

@@ -1,5 +1,5 @@
-import Mock from 'mockjs2'
-import { builder } from '../util'
+import Mock from 'mockjs2' // 模拟请求响应的库
+import { builder } from '../util' // 用于构建响应体和解析请求参数
 
 const info = options => {
   // 定義函數 接收請求時傳入的參數
@@ -7,7 +7,7 @@ const info = options => {
   const userInfo = {
     // 存放用戶的基本信息
     id: '4291d7da9005377ec9aec4a71ea837f',
-    name: '用户名',
+    name: '天野远子',
     username: 'admin',
     password: '',
     avatar: '/avatar2.jpg',

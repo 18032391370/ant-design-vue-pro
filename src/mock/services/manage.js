@@ -43,7 +43,7 @@ const projects = () => {
       id: 1,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
       title: '示例標題',
-      description: '白云奉献给草场 江河奉献给海洋 我拿什么奉献给你 我的朋友',
+      description: '白雲奉獻給草場 江河奉獻給海洋 我拿什麼奉獻給妳 我的朋友',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
@@ -51,7 +51,7 @@ const projects = () => {
       id: 2,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
       title: '示例標題',
-      description: '我拿什么奉献给你 我不停的问 我不停的找 不停的想',
+      description: '我拿什麼奉獻給妳 我不停的問 我不停的找 不停的想',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
@@ -59,7 +59,7 @@ const projects = () => {
       id: 3,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
       title: '示例標題',
-      description: '白鸽奉献给蓝天 星光奉献给长夜 我拿什么奉献给你 我的小孩',
+      description: '白鴿奉獻給藍天 星光奉獻給長夜 我拿什麼奉獻給你 我的小孩',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     },
@@ -82,8 +82,8 @@ const projects = () => {
     {
       id: 6,
       cover: 'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png',
-      title: '脫繮凱',
-      description: '如果抓得緊 不讓我走 怎麼會狼狽',
+      title: '示例標題',
+      description: '如果抓得緊 不讓我走 怎麼會狼狽 這份愛 會不會 會不會',
       status: 1,
       updatedAt: '2018-07-26 00:00:00'
     }
@@ -96,6 +96,7 @@ const projects = () => {
 }
 
 const activity = () => {
+  // 数据驱动
   return builder([{
     id: 1,
     user: {
@@ -103,76 +104,76 @@ const activity = () => {
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
     },
     project: {
-      name: '白鹭酱油开发组',
-      action: '更新',
-      event: '番组计划'
+      name: '@development team',
+      action: 'updated',
+      event: '@plan'
     },
-    time: '2018-08-23 14:47:00'
-  },
-  {
-    id: 1,
-    user: {
-      nickname: '蓝莓酱',
-      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png'
-    },
-    project: {
-      name: '白鹭酱油开发组',
-      action: '更新',
-      event: '番组计划'
-    },
-    time: '2018-08-23 09:35:37'
+    time: '1900-01-01 00:00:00'
   },
   {
     id: 1,
     user: {
       nickname: '@name',
-      avatar: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original'
-    },
-    project: {
-      name: '白鹭酱油开发组',
-      action: '创建',
-      event: '番组计划'
-    },
-    time: '2017-05-27 00:00:00'
-  },
-  {
-    id: 1,
-    user: {
-      nickname: '曲丽丽',
-      avatar: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original'
-    },
-    project: {
-      name: '高逼格设计天团',
-      action: '更新',
-      event: '六月迭代'
-    },
-    time: '2018-08-23 14:47:00'
-  },
-  {
-    id: 1,
-    user: {
-      nickname: '@name',
-      avatar: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original'
-    },
-    project: {
-      name: '高逼格设计天团',
-      action: 'created',
-      event: '六月迭代'
-    },
-    time: '2018-08-23 14:47:00'
-  },
-  {
-    id: 1,
-    user: {
-      nickname: '曲丽丽',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
     },
     project: {
-      name: '高逼格设计天团',
-      action: 'created',
-      event: '六月迭代'
+      name: '@development team',
+      action: 'updated',
+      event: '@plan'
     },
-    time: '2018-08-23 14:47:00'
+    time: '1900-01-01 00:00:00'
+  },
+  {
+    id: 1,
+    user: {
+      nickname: '@name',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+    },
+    project: {
+      name: '@development team',
+      action: 'created',
+      event: '@plan'
+    },
+    time: '1900-01-01 00:00:00'
+  },
+  {
+    id: 1,
+    user: {
+      nickname: '@name',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+    },
+    project: {
+      name: '@development team',
+      action: 'updated',
+      event: '@plan'
+    },
+    time: '1900-01-01 00:00:00'
+  },
+  {
+    id: 1,
+    user: {
+      nickname: '@name',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+    },
+    project: {
+      name: '@development team',
+      action: 'created',
+      event: '@plan'
+    },
+    time: '1900-01-01 00:00:00'
+  },
+  {
+    id: 1,
+    user: {
+      nickname: '@name',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+    },
+    project: {
+      name: '@development team',
+      action: 'created',
+      event: '@plan'
+    },
+    time: '1900-01-01 00:00:00'
   }
   ])
 }
@@ -180,27 +181,27 @@ const activity = () => {
 const teams = () => {
   return builder([{
     id: 1,
-    name: '科学搬砖组',
+    name: 'teamName',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
   },
   {
     id: 2,
-    name: '程序员日常',
+    name: 'teamName',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png'
   },
   {
     id: 1,
-    name: '设计天团',
+    name: 'teamName',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/gaOngJwsRYRaVAuXXcmB.png'
   },
   {
     id: 1,
-    name: '中二少女团',
+    name: 'teamName',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ubnKSIfAJTxIgXOKlciN.png'
   },
   {
     id: 1,
-    name: '骗你学计算机',
+    name: 'teamName',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WhxKECPNujWoWEFNdnJE.png'
   }
   ])

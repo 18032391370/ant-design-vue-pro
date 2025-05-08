@@ -2,32 +2,41 @@
 import { UserLayout, BasicLayout, BlankLayout } from '@/layouts'
 import { bxAnaalyse } from '@/core/icons'
 
-const RouteView = {
+const RouteView = { // 路由视图组件
   name: 'RouteView',
-  render: h => h('router-view')
+  render: h => h('router-view') // 渲染路由
 }
 
-export const asyncRouterMap = [
+export const asyncRouterMap = [ // 需要异步加载的路由
   {
-    path: '/',
-    name: 'index',
-    component: BasicLayout,
-    meta: { title: 'menu.home' },
-    redirect: '/dashboard/workplace',
-    children: [
-      // dashboard
+    path: '/', // 路径
+    name: 'index', // 名字
+    component: BasicLayout, // 路由对应组件
+    meta: { title: 'menu.home' }, // 存储与路由相关的元数据
+    redirect: '/dashboard/workplace', // 重定向路径
+    children: [ // 嵌套路由
+      // 仪表盘组件
       {
         path: '/dashboard',
         name: 'dashboard',
-        redirect: '/dashboard/workplace',
-        component: RouteView,
-        meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
-        children: [
+        redirect: '/dashboard/workplace', // 重定向
+        component: RouteView, // 嵌套路由容器
+        meta: {
+          title: 'menu.dashboard',
+          keepAlive: true, // 缓存页面
+          icon: bxAnaalyse,
+          permission: ['dashboard']
+        },
+        children: [ // 两个子路由
           {
             path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
             name: 'Analysis',
             component: () => import('@/views/dashboard/Analysis'),
-            meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: ['dashboard'] }
+            meta: {
+              title: 'menu.dashboard.analysis',
+              keepAlive: false, // 不缓存页面
+              permission: ['dashboard'] // 权限控制
+            }
           },
           // 外部链接
           // {
@@ -39,17 +48,21 @@ export const asyncRouterMap = [
             path: '/dashboard/workplace',
             name: 'Workplace',
             component: () => import('@/views/dashboard/Workplace'),
-            meta: { title: 'menu.dashboard.workplace', keepAlive: true, permission: ['dashboard'] }
+            meta: {
+              title: 'menu.dashboard.workplace',
+              keepAlive: true,
+              permission: ['dashboard']
+            }
           }
         ]
       },
-      // forms
+      // 表单组件
       {
-        path: '/form',
-        redirect: '/form/base-form',
+        path: '/form', // 主路由路径
+        redirect: '/form/base-form', // 重定向
         component: RouteView,
         meta: { title: 'menu.form', icon: 'form', permission: ['form'] },
-        children: [
+        children: [ // 子路由
           {
             path: '/form/base-form',
             name: 'BaseForm',
@@ -70,14 +83,14 @@ export const asyncRouterMap = [
           }
         ]
       },
-      // list
+      // 列表组件
       {
         path: '/list',
         name: 'list',
         component: RouteView,
         redirect: '/list/table-list',
         meta: { title: 'menu.list', icon: 'table', permission: ['table'] },
-        children: [
+        children: [ // 辅助生成菜单
           {
             path: '/list/table-list/:pageNo([1-9]\\d*)?',
             name: 'TableListWrapper',
@@ -127,7 +140,7 @@ export const asyncRouterMap = [
         ]
       },
 
-      // profile
+      // 个人资料
       {
         path: '/profile',
         name: 'profile',
@@ -150,7 +163,7 @@ export const asyncRouterMap = [
         ]
       },
 
-      // result
+      // 结果页面
       {
         path: '/result',
         name: 'result',
@@ -173,7 +186,7 @@ export const asyncRouterMap = [
         ]
       },
 
-      // Exception
+      // 异常页面
       {
         path: '/exception',
         name: 'exception',
@@ -345,6 +358,7 @@ export const asyncRouterMap = [
  * @type { *[] }
  */
 export const constantRouterMap = [
+  // 无需权限控制的基础路由
   {
     path: '/user',
     component: UserLayout,
@@ -354,17 +368,17 @@ export const constantRouterMap = [
       {
         path: 'login',
         name: 'login',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/Login')
+        component: () => import(/* webpackChunkName: "user" */ '@/views/user/Login') // 登录
       },
       {
         path: 'register',
         name: 'register',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/Register')
+        component: () => import(/* webpackChunkName: "user" */ '@/views/user/Register') // 注册
       },
       {
         path: 'register-result',
         name: 'registerResult',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult')
+        component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult') // 注册结果
       },
       {
         path: 'recover',
@@ -375,7 +389,7 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/404',
+    path: '/404', // 404找不到页面
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
   }
 ]
