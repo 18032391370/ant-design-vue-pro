@@ -1,8 +1,12 @@
 <template>
   <div class="page-header-index-wide">
+    <!-- 左侧是菜单栏 右侧是具体的设置内容区域 -->
     <a-card :bordered="false" :bodyStyle="{ padding: '16px 0', height: '100%' }" :style="{ height: '100%' }">
+      <!-- 将所有内容包裹在卡片内显示 -->
       <div class="account-settings-info-main" :class="{ 'mobile': isMobile }">
+        <!-- 左侧开始... -->
         <div class="account-settings-info-left">
+          <!-- 菜单组件 -->
           <a-menu
             :mode="isMobile ? 'horizontal' : 'inline'"
             :style="{ border: '0', width: isMobile ? '560px' : 'auto'}"
@@ -10,37 +14,46 @@
             type="inner"
             @openChange="onOpenChange"
           >
+            <!-- 菜单栏 -->
             <a-menu-item key="/account/settings/basic">
+              <!-- 基础设置 -->
               <router-link :to="{ name: 'BasicSettings' }">
                 {{ $t('account.settings.menuMap.basic') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/security">
+              <!-- 安全设置 -->
               <router-link :to="{ name: 'SecuritySettings' }">
                 {{ $t('account.settings.menuMap.security') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/custom">
+              <!-- 自定义设置 -->
               <router-link :to="{ name: 'CustomSettings' }">
                 {{ $t('account.settings.menuMap.custom') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/binding">
+              <!-- 绑定设置 -->
               <router-link :to="{ name: 'BindingSettings' }">
                 {{ $t('account.settings.menuMap.binding') }}
               </router-link>
             </a-menu-item>
             <a-menu-item key="/account/settings/notification">
+              <!-- 通知设置 -->
               <router-link :to="{ name: 'NotificationSettings' }">
                 {{ $t('account.settings.menuMap.notification') }}
               </router-link>
             </a-menu-item>
           </a-menu>
         </div>
+        <!-- 右侧内容区域 -->
         <div class="account-settings-info-right">
           <div class="account-settings-info-title">
+            <!-- 动态绑定... -->
             <span>{{ $t($route.meta.title) }}</span>
           </div>
+          <!-- 渲染路由 -->
           <route-view></route-view>
         </div>
       </div>

@@ -1,5 +1,8 @@
 <template>
+  <!-- 描述当前页面的功能场景 -->
+  <!-- 包裹页面头部内容 -->
   <page-header-wrapper content="高级表单常见于一次性输入和提交大批量数据的场景">
+    <!-- 这是卡片组件 -->
     <a-card class="card" title="仓库管理" :bordered="false">
       <repository-form ref="repository" :showSubmit="false" />
     </a-card>
@@ -7,15 +10,18 @@
       <task-form ref="task" :showSubmit="false" />
     </a-card>
 
-    <!-- table -->
+    <!-- 信息表 -->
     <a-card>
+      <!-- 展示成员信息的表格 -->
       <a-table
         :columns="columns"
         :dataSource="data"
         :pagination="false"
         :loading="memberLoading"
       >
+        <!-- 循环列表[成员姓名,工号,所属部门] -->
         <template v-for="(col, i) in ['name', 'workId', 'department']" :slot="col" slot-scope="text, record">
+          <!-- 判断:为真渲染输入框 为假直接显示内容 -->
           <a-input
             :key="col"
             v-if="record.editable"
@@ -26,21 +32,28 @@
           />
           <template v-else>{{ text }}</template>
         </template>
+        <!-- 操作列 -->
         <template slot="operation" slot-scope="text, record">
+          <!-- 首先判断editable的布尔值 -->
           <template v-if="record.editable">
+            <!-- 值为真显示'保存'和'取消' -->
             <span v-if="record.isNew">
+              <!-- 点击添加 -->
               <a @click="saveRow(record)">添加</a>
               <a-divider type="vertical" />
+              <!-- 点击删除逻辑 -->
               <a-popconfirm title="是否要删除此行？" @confirm="remove(record.key)">
                 <a>删除</a>
               </a-popconfirm>
             </span>
             <span v-else>
+              <!-- 点击编辑后逻辑 -->
               <a @click="saveRow(record)">保存</a>
               <a-divider type="vertical" />
               <a @click="cancel(record.key)">取消</a>
             </span>
           </template>
+          <!-- 值为假就显示编辑 -->
           <span v-else>
             <a @click="toggle(record.key)">编辑</a>
             <a-divider type="vertical" />
@@ -50,12 +63,14 @@
           </span>
         </template>
       </a-table>
+      <!--  -->
       <a-button style="width: 100%; margin-top: 16px; margin-bottom: 8px" type="dashed" icon="plus" @click="newMember">新增成员</a-button>
     </a-card>
 
-    <!-- fixed footer toolbar -->
+    <!-- 固定底部工具栏 -->
     <footer-tool-bar :is-mobile="isMobile" :collapsed="sideCollapsed">
       <span class="popover-wrapper">
+        <!-- 表单验证错误信息的弹出框 -->
         <a-popover title="表单校验信息" overlayClassName="antd-pro-pages-forms-style-errorPopover" trigger="click" :getPopupContainer="trigger => trigger.parentNode">
           <template slot="content">
             <li v-for="item in errors" :key="item.key" @click="scrollToField(item.key)" class="antd-pro-pages-forms-style-errorListItem">
@@ -69,6 +84,7 @@
           </span>
         </a-popover>
       </span>
+      <!-- 提交按钮 -->
       <a-button type="primary" @click="validate" :loading="loading">提交</a-button>
     </footer-tool-bar>
   </page-header-wrapper>
@@ -108,14 +124,14 @@ export default {
       loading: false,
       memberLoading: false,
 
-      // table
+      // 表格的列信息
       columns: [
         {
-          title: '成员姓名',
-          dataIndex: 'name',
+          title: '成员姓名', // 列标题
+          dataIndex: 'name', // 数据索引
           key: 'name',
-          width: '20%',
-          scopedSlots: { customRender: 'name' }
+          width: '20%', // 表宽
+          scopedSlots: { customRender: 'name' } // 自定义渲染函数
         },
         {
           title: '工号',
@@ -137,56 +153,56 @@ export default {
           scopedSlots: { customRender: 'operation' }
         }
       ],
-      data: [
+      data: [ // 存储表格的数据
         {
-          key: '1',
-          name: '小明',
-          workId: '001',
-          editable: false,
-          department: '行政部'
+          key: '1', // 索引
+          name: '朱朝阳', // 姓名
+          workId: '001', // 工号
+          editable: false, // 不可编辑
+          department: '行政部' // 部门
         },
         {
           key: '2',
-          name: '李莉',
+          name: '岳普',
           workId: '002',
           editable: false,
-          department: 'IT部'
+          department: '财务部'
         },
         {
           key: '3',
-          name: '王小帅',
+          name: '严良',
           workId: '003',
           editable: false,
-          department: '财务部'
+          department: 'IT部'
         }
       ],
 
-      errors: []
+      errors: [] // 用于存储表单验证错误信息
     }
   },
   methods: {
     handleSubmit (e) {
       e.preventDefault()
     },
-    newMember () {
+    newMember () { // 新增一名成员
       const length = this.data.length
       this.data.push({
         key: length === 0 ? '1' : (parseInt(this.data[length - 1].key) + 1).toString(),
         name: '',
         workId: '',
         department: '',
-        editable: true,
+        editable: true, // 可编辑
         isNew: true
       })
     },
-    remove (key) {
+    remove (key) { // 删除指定的成员行
       const newData = this.data.filter(item => item.key !== key)
       this.data = newData
     },
-    saveRow (record) {
+    saveRow (record) { // 保存一行数据
       this.memberLoading = true
       const { key, name, workId, department } = record
-      if (!name || !workId || !department) {
+      if (!name || !workId || !department) { // 数据不够完整
         this.memberLoading = false
         this.$message.error('请填写完整成员信息。')
         return
@@ -203,9 +219,9 @@ export default {
         this.memberLoading = false
       })
     },
-    toggle (key) {
+    toggle (key) { // 切换表格行的可编辑状态
       const target = this.data.find(item => item.key === key)
-      target._originalData = { ...target }
+      target._originalData = { ...target } // 保存原始数据便于复原
       target.editable = !target.editable
     },
     getRowByKey (key, newData) {
@@ -227,15 +243,15 @@ export default {
     },
 
     // 最终全页面提交
-    validate () {
+    validate () { // 触发表单验证
       const { $refs: { repository, task }, $notification } = this
       const repositoryForm = new Promise((resolve, reject) => {
         repository.form.validateFields((err, values) => {
-          if (err) {
+          if (err) { // 报错
             reject(err)
             return
           }
-          resolve(values)
+          resolve(values) // 显示表单数据
         })
       })
       const taskForm = new Promise((resolve, reject) => {
@@ -261,7 +277,7 @@ export default {
         this.errorList(tmp)
       })
     },
-    errorList (errors) {
+    errorList (errors) { // 根据表单验证结果生成错误列表
       if (!errors || errors.length === 0) {
         return
       }
@@ -273,7 +289,7 @@ export default {
           fieldLabel: fieldLabels[key]
         }))
     },
-    scrollToField (fieldKey) {
+    scrollToField (fieldKey) { // 滚动到指定表单项的错误字段
       const labelNode = document.querySelector(`label[for="${fieldKey}"]`)
       if (labelNode) {
         labelNode.scrollIntoView(true)

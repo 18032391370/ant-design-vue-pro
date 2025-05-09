@@ -13,7 +13,7 @@ const serverList = (options) => {
   const key = (pageNo - 1) * pageSize
   const next = (pageNo >= totalPage ? (totalCount % pageSize) : pageSize) + 1
 
-  for (let i = 1; i < next; i++) {
+  for (let i = 1; i < next; i++) { // 此数据要传给“查询表格”前端页面
     // 每次循环将生成一个新对象并加入结果数组
     const tmpKey = key + i // 确保唯一性
     result.push({ // 将对象推入数组 逐个生成多个对象
@@ -22,7 +22,7 @@ const serverList = (options) => {
       no: 'No ' + tmpKey, // 编号字符串
       description: '这是一段描述', // 描述内容
       callNo: Mock.mock('@integer(1, 999)'), // 生成(1,999)之间的随机整数
-      status: Mock.mock('@integer(0, 3)'), // 生成随机状态码 草稿、发布、禁用
+      status: Mock.mock('@integer(0, 3)'), // 生成随机状态码 green-已上线 red-异常 grey-关闭 blue-运行中
       updatedAt: Mock.mock('@datetime'), // 随机生成时间日期字符串
       editable: false // 不可编辑
     })
@@ -239,7 +239,7 @@ const radar = () => {
     '部门': 40
   },
   {
-    item: '引用',
+    item: 'XX',
     '个人': 70,
     '团队': 50,
     '部门': 40

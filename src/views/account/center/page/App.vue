@@ -1,11 +1,14 @@
 <template>
   <div class="app-list">
+    <!-- 列表 响应式布局 -->
     <a-list
       :grid="{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }"
       :dataSource="dataSource">
       <a-list-item slot="renderItem" slot-scope="item">
         <a-card :hoverable="true">
+          <!-- 卡片组件 元数据 -->
           <a-card-meta>
+            <!-- 标题 头像 描述 -->
             <div style="margin-bottom: 3px" slot="title">{{ item.title }}</div>
             <a-avatar class="card-avatar" slot="avatar" :src="item.avatar" size="small"/>
             <div class="meta-cardInfo" slot="description">
@@ -21,6 +24,7 @@
               </div>
             </div>
           </a-card-meta>
+          <!-- 卡片操作区域 -->
           <template class="ant-card-actions" slot="actions">
             <a>
               <a-icon type="download"/>
@@ -38,13 +42,13 @@
                 </a>
                 <a-menu slot="overlay">
                   <a-menu-item>
-                    <a href="javascript:;">1st menu item</a>
+                    <a href="javascript:;">菜单第一项</a>
                   </a-menu-item>
                   <a-menu-item>
-                    <a href="javascript:;">2nd menu item</a>
+                    <a href="javascript:;">菜单第二项</a>
                   </a-menu-item>
                   <a-menu-item>
-                    <a href="javascript:;">3rd menu item</a>
+                    <a href="javascript:;">菜单第三项</a>
                   </a-menu-item>
                 </a-menu>
               </a-dropdown>
@@ -58,13 +62,13 @@
 </template>
 
 <script>
-const dataSource = []
-for (let i = 0; i < 11; i++) {
+const dataSource = [] // 初始化空数组
+for (let i = 0; i < 9; i++) { // 开始循环生成数据 一共11个
   dataSource.push({
-    title: 'Alipay',
-    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-    activeUser: 17,
-    newUser: 1700
+    title: '产品名称', // 名字
+    avatar: '../logo.png', // 图标
+    activeUser: 0, // 活跃用户数量
+    newUser: 0 // 新增用户数量
   })
 }
 

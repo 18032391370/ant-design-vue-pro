@@ -62,7 +62,7 @@
                   <div class="project-item">
                     <!-- 固定的数据 -->
                     <a href="/#/">科学搬砖组</a>
-                    <span class="datetime">9小时前</span>
+                    <span class="datetime" data-time="2025-05-09T01:30:00Z"></span>
                   </div>
                 </a-card>
               </a-card-grid>
@@ -262,15 +262,23 @@ export default {
     this.getActivity()
     this.getTeams()
     this.initRadar()
+    this.$nextTick(() => {
+      document.querySelectorAll('.datetime').forEach(el => {
+        const time = el.getAttribute('data-time')
+        el.textContent = this.timeAgo(time)
+      })
+    })
   },
   methods: {
     getProjects () {
+      // 獲取項目數據
       this.$http.get('/list/search/projects').then(res => {
         this.projects = res.result && res.result.data
         this.loading = false
       })
     },
     getActivity () {
+      // 獲取用戶活動數據
       this.$http.get('/workplace/activity').then(res => {
         this.activities = res.result
       })
@@ -296,6 +304,16 @@ export default {
         this.radarData = dv.rows // 将处理好的数据赋给雷达图
         this.radarLoading = false // 内容呈现加载状态关闭...
       })
+    },
+    timeAgo (time) {
+      const now = new Date()
+      const past = new Date(time)
+      const diff = Math.floor((now - past) / 1000) // 秒
+      if (diff < 60) return `${diff}秒前`
+      if (diff < 3600) return `${Math.floor(diff / 60)}分钟前`
+      if (diff < 86400) return `${Math.floor(diff / 3600)}小时前`
+      if (diff < 2592000) return `${Math.floor(diff / 86400)}天前`
+      return past.toLocaleDateString()
     }
   }
 }

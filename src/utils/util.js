@@ -2,10 +2,11 @@ export function timeFix () {
   // 时间问候函数
   const time = new Date()
   const hour = time.getHours()
+  // 位于名字之前
   return hour < 6 ? '夜深了' : hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
 }
 
-// 提示语
+// 提示语 位于名字之后
 export function welcome () {
   const arr = [
     '成功不是终点 而失败并不致命 有勇气继续下去才是最重要的',

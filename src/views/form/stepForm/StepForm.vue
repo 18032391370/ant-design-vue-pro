@@ -1,4 +1,5 @@
 <template>
+  <!-- 这是分步表单的上半部分 -->
   <page-header-wrapper>
     <!-- PageHeader 第二种使用方式 (v-slot) -->
     <template v-slot:content>

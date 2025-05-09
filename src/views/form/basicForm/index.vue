@@ -116,7 +116,7 @@ export default {
   name: 'BaseForm',
   data () {
     return {
-      form: this.$form.createForm(this)
+      form: this.$form.createForm(this) // 表单内容全部放在这里
     }
   },
   methods: {

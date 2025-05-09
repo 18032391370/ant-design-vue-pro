@@ -10,6 +10,7 @@
           placeholder="ant-design@alipay.com"
           v-decorator="['paymentUser', { rules: [{required: true, message: '付款账户必须填写'}] }]">
           <a-select-option value="1">ant-design@alipay.com</a-select-option>
+          <a-select-option value="2">test@example.com</a-select-option>
         </a-select>
       </a-form-item>
       <a-form-item
@@ -24,10 +25,13 @@
           <a-select defaultValue="alipay" style="width: 100px">
             <a-select-option value="alipay">支付宝</a-select-option>
             <a-select-option value="wexinpay">微信</a-select-option>
+            <a-select-option value="paypal">PayPal</a-select-option>
+            <a-select-option value="payEasy">Pay-easy</a-select-option>
           </a-select>
           <a-input
             :style="{width: 'calc(100% - 100px)'}"
-            v-decorator="['payType', { initialValue: 'test@example.com', rules: [{required: true, message: '收款账户必须填写'}]}]"
+            placeholder="test@example.com"
+            v-decorator="['payType', { rules: [{required: true, message: '收款账户必须填写'}]}]"
           />
         </a-input-group>
       </a-form-item>
@@ -36,14 +40,16 @@
         :labelCol="labelCol"
         :wrapperCol="wrapperCol"
       >
-        <a-input v-decorator="['name', { initialValue: 'Alex', rules: [{required: true, message: '收款人名称必须核对'}] }]"/>
+        <a-input
+          placeholder="请输入收款人"
+          v-decorator="['name', { rules: [{required: true, message: '收款人名称必须核对'}] }]"/>
       </a-form-item>
       <a-form-item
         label="转账金额"
         :labelCol="labelCol"
         :wrapperCol="wrapperCol"
       >
-        <a-input prefix="￥" v-decorator="['momey', { initialValue: '5000', rules: [{required: true, message: '转账金额必须填写'}] }]"/>
+        <a-input prefix="￥" placeholder="请输入金额" v-decorator="['momey', { rules: [{required: true, message: '转账金额必须填写'}] }]"/>
       </a-form-item>
       <a-form-item :wrapperCol="{span: 19, offset: 5}">
         <a-button type="primary" @click="nextStep">下一步</a-button>

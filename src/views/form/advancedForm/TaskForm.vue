@@ -22,8 +22,8 @@
               'owner2',
               {rules: [{ required: true, message: '请选择执行人'}]}
             ]" >
-            <a-select-option value="黄丽丽">黄丽丽</a-select-option>
-            <a-select-option value="李大刀">李大刀</a-select-option>
+            <a-select-option value="朱朝阳">朱朝阳</a-select-option>
+            <a-select-option value="岳普">岳普</a-select-option>
           </a-select>
         </a-form-item>
       </a-col>
@@ -38,8 +38,8 @@
               'approver2',
               {rules: [{ required: true, message: '请选择责任人'}]}
             ]" >
-            <a-select-option value="王伟">王伟</a-select-option>
-            <a-select-option value="李红军">李红军</a-select-option>
+            <a-select-option value="岳普">岳普</a-select-option>
+            <a-select-option value="朱朝阳">朱朝阳</a-select-option>
           </a-select>
         </a-form-item>
       </a-col>

@@ -1,7 +1,11 @@
 <template>
   <div>
     <a-form>
-      <a-result title="操作成功" :is-success="true" sub-title="预计两小时内到账" style="max-width: 560px; margin: 40px auto 0;">
+      <a-result
+        title="操作成功"
+        :is-success="true"
+        sub-title="预计两小时内到账"
+        style="max-width: 560px; margin: 40px auto 0;">
         <div class="information">
           <a-row>
             <a-col :sm="8" :xs="24">付款账户：</a-col>
@@ -13,7 +17,7 @@
           </a-row>
           <a-row>
             <a-col :sm="8" :xs="24">收款人姓名：</a-col>
-            <a-col :sm="16" :xs="24">辉夜</a-col>
+            <a-col :sm="16" :xs="24">酸萝卜别吃</a-col>
           </a-row>
           <a-row>
             <a-col :sm="8" :xs="24">转账金额：</a-col>

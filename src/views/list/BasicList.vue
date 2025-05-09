@@ -1,15 +1,16 @@
 <template>
   <page-header-wrapper>
+    <!-- 这是标准列表页 位于左3导航2 -->
     <a-card :bordered="false">
       <a-row>
         <a-col :sm="8" :xs="24">
-          <info title="我的待办" value="8个任务" :bordered="true" />
+          <info title="我的待办" value="0个任务" :bordered="true" />
         </a-col>
         <a-col :sm="8" :xs="24">
-          <info title="本周任务平均处理时间" value="32分钟" :bordered="true" />
+          <info title="本周任务平均处理时间" value="0分钟" :bordered="true" />
         </a-col>
         <a-col :sm="8" :xs="24">
-          <info title="本周完成任务数" value="24个" />
+          <info title="本周完成任务数" value="0个" />
         </a-col>
       </a-row>
     </a-card>
@@ -76,50 +77,50 @@ import Info from './components/Info'
 
 const data = []
 data.push({
-  title: 'Alipay',
+  title: '示例列表',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '那是一种内在的东西， 他们到达不了，也无法触及的',
-  owner: '付晓晓',
+  description: '假如把犯得起的錯 能錯的都錯過 應該還來得及去悔過',
+  owner: '朱朝阳',
   startAt: '2018-07-26 22:44',
   progress: {
     value: 90
   }
 })
 data.push({
-  title: 'Angular',
+  title: '示例列表',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
-  description: '希望是一个好东西，也许是最好的，好东西是不会消亡的',
-  owner: '曲丽丽',
+  description: '在感情面前 講什麼自我 要得過且過 才好過',
+  owner: '张东升',
   startAt: '2018-07-26 22:44',
   progress: {
     value: 54
   }
 })
 data.push({
-  title: 'Ant Design',
+  title: '示例列表',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
-  description: '生命就像一盒巧克力，结果往往出人意料',
-  owner: '林东东',
+  description: '全都怪我 不該沉默時沉默 該勇敢時軟弱 如果不是我 誤會自己灑脫 讓我們難過',
+  owner: '普普',
   startAt: '2018-07-26 22:44',
   progress: {
     value: 66
   }
 })
 data.push({
-  title: 'Ant Design Pro',
+  title: '示例列表',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
-  description: '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
-  owner: '周星星',
+  description: '倘若那天 把該說的話好好說 該體諒的不執著 如果那天我 不受情緒挑撥 你會怎麼做',
+  owner: '嚴良',
   startAt: '2018-07-26 22:44',
   progress: {
     value: 30
   }
 })
 data.push({
-  title: 'Bootstrap',
+  title: '示例列表',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
-  description: '那时候我只会想自己想要什么，从不想自己拥有什么',
-  owner: '吴加好',
+  description: '那麼多如果 可能如果我 可惜沒如果 只剩下結果',
+  owner: '朱永平',
   startAt: '2018-07-26 22:44',
   progress: {
     status: 'exception',

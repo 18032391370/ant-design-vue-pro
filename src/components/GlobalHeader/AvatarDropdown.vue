@@ -4,7 +4,7 @@
     <!-- 账户头像容器 -->
     <span class="ant-pro-account-avatar">
       <!-- 小头像 -->
-      <a-avatar size="small" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png" class="antd-pro-global-header-index-avatar" />
+      <a-avatar size="small" src="../avatar2.jpg" class="antd-pro-global-header-index-avatar" />
       <!-- 传入用户名 -->
       <span>{{ currentUser.name }}</span>
     </span>

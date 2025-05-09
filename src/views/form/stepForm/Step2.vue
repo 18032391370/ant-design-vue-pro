@@ -48,7 +48,8 @@
         <a-input
           type="password"
           style="width: 80%;"
-          v-decorator="['paymentPassword', { initialValue: '123456', rules: [{required: true, message: '请输入支付密码'}] }]" />
+          placeholder="请输入支付密码"
+          v-decorator="['paymentPassword', { rules: [{required: true, message: '必须输入正确的支付密码才能继续'}] }]" />
       </a-form-item>
       <a-form-item :wrapperCol="{span: 19, offset: 5}">
         <a-button :loading="loading" type="primary" @click="nextStep">提交</a-button>

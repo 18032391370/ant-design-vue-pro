@@ -3,6 +3,7 @@
     <a-row class="form-row" :gutter="16">
       <a-col :lg="6" :md="12" :sm="24">
         <a-form-item label="仓库名">
+          <!-- 输入框 -->
           <a-input
             placeholder="请输入仓库名称"
             v-decorator="[
@@ -28,9 +29,9 @@
         <a-form-item
           label="仓库管理员">
           <a-select placeholder="请选择管理员" v-decorator="[ 'owner', {rules: [{ required: true, message: '请选择管理员'}]} ]">
-            <a-select-option value="王同学">王同学</a-select-option>
-            <a-select-option value="李同学">李同学</a-select-option>
-            <a-select-option value="黄同学">黄同学</a-select-option>
+            <a-select-option value="朱朝阳">朱朝阳</a-select-option>
+            <a-select-option value="岳普">岳普</a-select-option>
+            <a-select-option value="严良">严良</a-select-option>
           </a-select>
         </a-form-item>
       </a-col>
@@ -40,8 +41,8 @@
         <a-form-item
           label="审批人">
           <a-select placeholder="请选择审批员" v-decorator="[ 'approver', {rules: [{ required: true, message: '请选择审批员'}]} ]">
-            <a-select-option value="王晓丽">王晓丽</a-select-option>
-            <a-select-option value="李军">李军</a-select-option>
+            <a-select-option value="朱朝阳">朱朝阳</a-select-option>
+            <a-select-option value="岳普">岳普</a-select-option>
           </a-select>
         </a-form-item>
       </a-col>
